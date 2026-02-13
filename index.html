@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alister Parsons · The Fun Version</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff006e;
+            --neon-blue: #00f5ff;
+            --neon-green: #39ff14;
+            --neon-purple: #bc13fe;
+            --neon-orange: #ff9e00;
+            --dark: #0d0221;
+            --comic: 'Comic Neue', cursive;
+            --bangers: 'Bangers', cursive;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--comic);
+            background: var(--dark);
+            color: white;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🚀</text></svg>'), auto;
+        }
+
+        ::selection {
+            background: var(--neon-pink);
+            color: var(--dark);
+        }
+
+        /* Animated Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(13, 2, 33, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid var(--neon-pink);
+            padding: 1rem 2rem;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--bangers);
+            font-size: 2rem;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink); }
+            50% { text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), 0 0 60px var(--neon-pink); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: var(--neon-blue);
+            font-weight: 700;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero-content {
+            animation: bounceIn 1s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .emoji-rain {
+            position: absolute;
+            font-size: 2rem;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-family: var(--bangers);
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue), var(--neon-green), var(--neon-purple));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbow 3s ease infinite;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-title {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--neon-orange);
+            margin-bottom: 2rem;
+            font-weight: 700;
+            text-shadow: 0 0 10px var(--neon-orange);
+        }
+
+        .hero-hook {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--neon-blue);
+            line-height: 1.6;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: var(--bangers);
+            font-size: 1.5rem;
+            padding: 1.5rem 3rem;
+            text-decoration: none;
+            display: inline-block;
+            border: 4px solid;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '✨';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            font-size: 3rem;
+            transition: all 0.3s;
+        }
+
+        .btn:hover::before {
+            top: 50%;
+            right: 50%;
+            transform: translate(50%, -50%) rotate(180deg);
+        }
+
+        .btn-primary {
+            background: var(--neon-pink);
+            color: var(--dark);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        .btn-primary:hover {
+            background: var(--dark);
+            color: var(--neon-pink);
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 0 40px var(--neon-pink);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--neon-blue);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--neon-blue);
+            color: var(--dark);
+            transform: scale(1.1) rotate(-3deg);
+            box-shadow: 0 0 40px var(--neon-blue);
+        }
+
+        .headshot {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            border: 5px solid var(--neon-green);
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            animation: spin 10s linear infinite, float 3s ease-in-out infinite;
+            box-shadow: 0 0 40px var(--neon-green);
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Section Base */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--bangers);
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* About */
+        #about {
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.1), rgba(0, 245, 255, 0.1));
+        }
+
+        #about .section-title {
+            color: var(--neon-pink);
+            text-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        .about-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 3px solid var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
+            animation: wiggle 5s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(1deg); }
+            75% { transform: rotate(-1deg); }
+        }
+
+        .about-content p {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .about-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .fun-fact {
+            background: var(--neon-orange);
+            color: var(--dark);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: center;
+            transform: rotate(-2deg);
+            box-shadow: 0 10px 30px rgba(255, 158, 0, 0.5);
+        }
+
+        /* How I Help */
+        #help {
+            background: linear-gradient(135deg, rgba(188, 19, 254, 0.1), rgba(57, 255, 20, 0.1));
+        }
+
+        #help .section-title {
+            color: var(--neon-purple);
+            text-shadow: 0 0 20px var(--neon-purple);
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .help-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 3px solid var(--neon-green);
+            transition: all 0.3s;
+            animation: cardFloat 3s ease-in-out infinite;
+        }
+
+        .help-card:nth-child(1) { animation-delay: 0s; }
+        .help-card:nth-child(2) { animation-delay: 0.5s; }
+        .help-card:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .help-card:hover {
+            transform: scale(1.05) rotate(2deg);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 50px var(--neon-pink);
+        }
+
+        .help-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .help-card h3 {
+            font-family: var(--bangers);
+            font-size: 2rem;
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .help-card ul {
+            list-style: none;
+        }
+
+        .help-card li {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .help-card li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+        }
+
+        /* Current */
+        #current {
+            background: linear-gradient(135deg, rgba(255, 158, 0, 0.1), rgba(255, 0, 110, 0.1));
+        }
+
+        #current .section-title {
+            color: var(--neon-orange);
+            text-shadow: 0 0 20px var(--neon-orange);
+        }
+
+        .current-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 3px dashed var(--neon-orange);
+            text-align: center;
+        }
+
+        .current-content h3 {
+            font-family: var(--bangers);
+            font-size: 2.5rem;
+            color: var(--neon-blue);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        .current-content ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .current-content li {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .current-content li::before {
+            content: '🎯 ';
+        }
+
+        /* Contact */
+        #contact {
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.2), rgba(188, 19, 254, 0.2));
+            text-align: center;
+        }
+
+        #contact .section-title {
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        .contact-emoji {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+            animation: wave 1s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-20deg); }
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(13, 2, 33, 0.95);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 3px solid var(--neon-purple);
+        }
+
+        footer p {
+            font-family: var(--bangers);
+            font-size: 1.2rem;
+            color: var(--neon-purple);
+            text-shadow: 0 0 10px var(--neon-purple);
+        }
+
+        .easter-egg {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--neon-green);
+            cursor: pointer;
+        }
+
+        .easter-egg:hover {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .help-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">⚡ AP ⚡</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#help">Powers</a></li>
+                <li><a href="#current">Now</a></li>
+                <li><a href="#contact">Connect</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="headshot">🦸‍♂️</div>
+            <h1>ALISTER PARSONS</h1>
+            <p class="hero-title">Cloud Security Superhero 🚀 Enterprise Defender 🛡️</p>
+            <p class="hero-hook">
+                I help enterprises and global system integrators design EPIC secure cloud platforms 
+                and turn boring strategies into SHIPPED outcomes! 💥
+            </p>
+            <div class="hero-ctas">
+                <a href="#help" class="btn btn-primary">See My Superpowers</a>
+                <a href="#contact" class="btn btn-secondary">Beam Me Up</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-container">
+            <h2 class="section-title">🎮 Origin Story</h2>
+            <div class="about-content">
+                <p>
+                    From Deloitte program delivery (government, defence, finance) to leading MASSIVE cloud 
+                    and cybersecurity initiatives, I've spent 15+ years running complex transformations 
+                    and aligning technical and business teams. Think of me as the translator between 
+                    "tech speak" and "business speak" 🗣️
+                </p>
+                <p>
+                    I'm known for translating tech into decisions, running HIGH-ENERGY workshops (bring 
+                    your coffee ☕), and bringing structure to chaos. Outside work, I'm into fitness 💪, 
+                    systems thinking 🧠, and building small tools and automations that make life simpler 
+                    (because why do anything manually when you can automate it?).
+                </p>
+                <div class="fun-fact">
+                    🎉 Fun Fact: I once automated myself out of 3 hours of work per week and used that 
+                    time to learn 3D printing. Now I print habit trackers instead of buying them! 🖨️
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="help">
+        <div class="section-container">
+            <h2 class="section-title">⚡ My Superpowers</h2>
+            <div class="help-grid">
+                <div class="help-card">
+                    <span class="help-icon">🔒</span>
+                    <h3>Secure Cloud Platforms</h3>
+                    <ul>
+                        <li>Cloud architecture and guardrails</li>
+                        <li>CNAPP / security uplift programs</li>
+                        <li>Practical, developer-friendly security</li>
+                    </ul>
+                </div>
+                <div class="help-card">
+                    <span class="help-icon">🤝</span>
+                    <h3>Partner & Team Enablement</h3>
+                    <ul>
+                        <li>Workshops, labs, and technical enablement</li>
+                        <li>GSI and stakeholder alignment</li>
+                        <li>Turning strategy into execution</li>
+                    </ul>
+                </div>
+                <div class="help-card">
+                    <span class="help-icon">🚀</span>
+                    <h3>Delivery at Scale</h3>
+                    <ul>
+                        <li>Multi-million dollar programs</li>
+                        <li>Governance, RAID, and planning</li>
+                        <li>Shipping outcomes, not slide decks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="current">
+        <div class="section-container">
+            <h2 class="section-title">🎯 Current Mission</h2>
+            <div class="current-content">
+                <h3>Senior Partner Solutions Architect at Wiz</h3>
+                <ul>
+                    <li>Enabling global system integrators and enterprise cloud security</li>
+                    <li>Open to speaking, advisory, and interesting collaborations</li>
+                    <li>Building the future of cloud-native security at scale</li>
+                </ul>
+                <p style="font-size: 1.5rem; margin-top: 2rem;">
+                    💡 Want to chat about cloud security, automation, or why 3D printing is awesome? 
+                    Let's connect! 👇
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-container">
+            <h2 class="section-title">📡 Transmission Channels</h2>
+            <div class="contact-emoji">👋</div>
+            <div class="contact-links">
+                <a href="mailto:hello@alisterparsons.com" class="btn btn-primary">📧 Email</a>
+                <a href="https://linkedin.com" class="btn btn-secondary">💼 LinkedIn</a>
+                <a href="https://calendly.com" class="btn btn-primary">📅 Book a Call</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Alister Parsons · Made with ⚡ and 🎨</p>
+        <p class="easter-egg" onclick="alert('🎉 You found the easter egg! You are now officially awesome! 🎉')">
+            Psst... click me for a surprise! 🎁
+        </p>
+    </footer>
+
+    <script>
+        // Create falling emojis
+        function createEmojiRain() {
+            const emojis = ['💻', '🔒', '☁️', '🚀', '⚡', '🛡️', '🎯', '💡'];
+            const hero = document.querySelector('.hero');
+            
+            for (let i = 0; i < 10; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'emoji-rain';
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + '%';
+                emoji.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                emoji.style.animationDelay = Math.random() * 5 + 's';
+                hero.appendChild(emoji);
+            }
+        }
+
+        // Create star field
+        function createStars() {
+            const stars = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = star.style.height = Math.random() * 3 + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                stars.appendChild(star);
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Initialize
+        createStars();
+        createEmojiRain();
+
+        // Konami code easter egg
+        let konamiCode = [];
+        const konamiPattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.key);
+            konamiCode = konamiCode.slice(-10);
+            
+            if (konamiCode.join(',') === konamiPattern.join(',')) {
+                document.body.style.animation = 'rainbow 2s linear infinite';
+                alert('🎮 KONAMI CODE ACTIVATED! You are a true gamer! 🎮');
+            }
+        });
+    </script>
+</body>
+</html>
